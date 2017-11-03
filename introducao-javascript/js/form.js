@@ -1,7 +1,7 @@
 var botaoAdicionar = document.querySelector("#adicionar-paciente");
 botaoAdicionar.addEventListener("click", function(event) {
 	event.preventDefault();
-    
+
     var form = document.querySelector("#form-adiciona");
 
     var paciente = obtemPacienteDoFormulario(form);
@@ -15,8 +15,7 @@ botaoAdicionar.addEventListener("click", function(event) {
         return;
     }
 
-    var tabela = document.querySelector("#tabela-pacientes");
-    tabela.appendChild(pacienteTr);
+    adicionaPacienteNaTabela(paciente);
 
     form.reset();
 
@@ -32,7 +31,7 @@ function obtemPacienteDoFormulario(form) {
         peso: form.peso.value,
         altura: form.altura.value,
         gordura: form.gordura.value,
-        imc:calculaImc(form.peso.value,form.altura.value) 
+        imc:calculaImc(form.peso.value,form.altura.value)
     }
 
     return paciente;
@@ -59,7 +58,7 @@ function montaTr(paciente) {
 
     return pacienteTr;
 
-    
+
 
 }
 
@@ -104,4 +103,10 @@ function exibeMensagensDeErro(erros) {
         li.textContent = erro;
         ul.appendChild(li);
     });
+}
+
+function adicionaPacienteNaTabela(paciente) {
+    var pacienteTr = montaTr(paciente);
+    var tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr);
 }
